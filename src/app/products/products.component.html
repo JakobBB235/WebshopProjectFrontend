@@ -1,3 +1,26 @@
-<p>
-  products works!
-</p>
+<mat-card *ngFor="let item of items" class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{item.name}}</mat-card-title>
+    <mat-card-subtitle>{{item.inStock}}</mat-card-subtitle>
+    <!-- Make instock subtitle? -->
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <ul> 
+      <!-- Make *ngIf hide prices if null-->
+      <!-- <li><strong>Price for one item:</strong> {{item.priceForOneItem}}</li> -->
+      <!-- <li><strong>Price based on weight:</strong> {{item.priceBasedOnWeight}}{{item.weightMeasurement}}</li> -->
+      
+      <li><strong>Category:</strong> {{item.category}}</li>
+      <!-- <li><strong>Expiration date:</strong> {{item.expirationDate}}</li> -->
+    </ul>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="onItemViewClicked(item)">VIEW</button>
+  </mat-card-actions>
+
+</mat-card>
+
+<router-outlet></router-outlet>

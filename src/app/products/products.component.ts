@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Item } from '../entities/item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -9,9 +10,10 @@ import { Item } from '../entities/item';
 })
 export class ProductsComponent implements OnInit {
 
-  items: Item[];
-  
-  constructor(private apiService: ApiService) { }
+  items: Item[]; // pass all items to child?
+  // inputToChild: Item;
+
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.apiService.getAllItems().subscribe((response: Item[]) => {  
@@ -26,4 +28,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  onItemViewClicked(item: Item){
+    // this.inputToChild = item;
+    this.router.navigate(['/products/' + item.itemId]);
+  }
 }
