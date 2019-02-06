@@ -1,3 +1,5 @@
+import { Item } from "./item";
+
 export class User {
     userId: number;
     username: string;
@@ -6,4 +8,5 @@ export class User {
     role: string;
     enabled: boolean;
     
+    items: Item[];
 }

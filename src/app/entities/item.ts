@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Item {
     itemId: number;
     name: string;
@@ -11,4 +13,6 @@ export class Item {
     dateTimeCreated: Date;
     dateTimeEdited: Date;
     expirationDate: Date;
+
+    user: User;
 }

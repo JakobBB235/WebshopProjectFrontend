@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import { Item } from 'src/app/entities/item';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
   templateUrl: './view-product.component.html',
   styleUrls: ['./view-product.component.scss']
 })
-export class ViewProductComponent implements OnInit {
+export class ViewProductComponent implements OnInit, OnChanges {
 
-  // @Input() viewItem: Item;
+  @Input() viewItem: Item;
   // @Output() productViewClicked: EventEmitter<any> = new EventEmitter;
-  viewItem: Item;
+  // viewItem: Item;
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -33,6 +33,10 @@ export class ViewProductComponent implements OnInit {
       //If web service fails.
       
     });
+  }
+
+  ngOnChanges(){
+    
   }
 
   // onViewClick(){

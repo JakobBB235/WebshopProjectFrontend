@@ -23,7 +23,7 @@ export class ApiService {
     return this.http.post(environment.apiUrl + "/item", item);
   }
 
-  deleteItem(id: string){ 
+  deleteItem(id: number){ 
     return this.http.delete(environment.apiUrl + "/item/" + id); 
   }
 
@@ -51,4 +51,14 @@ export class ApiService {
   updateUser(user: User){ 
     return this.http.put(environment.apiUrl + "/user/" + user.userId, user); 
   }
+
+  //Login
+  login(user: User){
+    return this.http.post(environment.apiUrl + "/user/login", user)
+  }
+
+  //Saves the user along with the items.
+  // saveUser(user: User){
+  //   return this.http.post(environment.apiUrl + "/user/save", user)
+  // }
 }

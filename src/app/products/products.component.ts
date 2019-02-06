@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit {
 
   items: Item[]; // pass all items to child?
-  // inputToChild: Item;
+  itemToChild: Item; //Data from parent to child
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -29,7 +29,11 @@ export class ProductsComponent implements OnInit {
   }
 
   onItemViewClicked(item: Item){
-    // this.inputToChild = item;
+    this.itemToChild = item;
+    /*
+    Get data from this parent component to child component view-product on click.
+    If 
+     */
     this.router.navigate(['/products/' + item.itemId]);
   }
 }

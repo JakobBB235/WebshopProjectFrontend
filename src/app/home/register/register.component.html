@@ -1,3 +1,28 @@
-<p>
-  register works!
-</p>
+<div class="formStyle">
+  <h1>Register as user</h1>
+
+  <form novalidate [formGroup]="registerUserForm" (ngSubmit)="onSubmit(registerUserForm)">
+    <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Username" formControlName="username">
+    </mat-form-field><br>
+    <div *ngIf='registerUserForm.controls.username.touched && registerUserForm.controls.username.errors?.required'> 
+        Username must be filled out
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+    </mat-form-field><br>
+    <div *ngIf='registerUserForm.controls.password.touched && registerUserForm.controls.password.errors?.required'> 
+        Password must be filled out
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput type="email" placeholder="Email" formControlName="email">
+    </mat-form-field><br>
+    <div *ngIf='registerUserForm.controls.email.touched && registerUserForm.controls.email.errors?.required'> 
+        Email must be filled out
+    </div>
+
+    <button mat-flat-button type="submit" color="primary">Register</button>
+  </form>
+</div>

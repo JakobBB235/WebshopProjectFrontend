@@ -24,6 +24,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { ManageAccountComponent } from './portal/manage-account/manage-account.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    ManageAccountComponent
   ],
   imports: [
     BrowserModule,

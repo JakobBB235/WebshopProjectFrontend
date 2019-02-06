@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Item } from 'src/app/entities/item';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/entities/user';
 
 @Component({
   selector: 'app-create-product',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class CreateProductComponent implements OnInit {
 
   registerProductForm;
+  user: User;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { }
 
@@ -42,6 +44,7 @@ export class CreateProductComponent implements OnInit {
   
   createNewProduct(registerProductForm){
     let item = registerProductForm.value as Item;
+    item.user = this.user;
     this.apiService.addItem(item).subscribe(response => {  
       console.log(response);
       //If all goes well.
@@ -49,6 +52,13 @@ export class CreateProductComponent implements OnInit {
       console.log("Error!", error);
       //If web service fails.
     }); 
+
+    // this.user.items.concat(item); //Add item to the logged in user.
+    // this.apiService.saveUser(this.user).subscribe(response => {
+    //   console.log(response);
+    // }, error => {
+    //   console.log("Error!", error);
+    // });
     this.router.navigate(['/portal']); //Navigate
   }
 }

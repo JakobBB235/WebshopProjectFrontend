@@ -2,4 +2,9 @@
 <button mat-stroked-button routerLink="edit" color="primary">Edit Product</button>
 <button mat-stroked-button routerLink="myproducts" color="primary">My Products</button>
 
-<router-outlet></router-outlet>
+<!-- Data from child to parent -->
+<app-my-products (itemEditClicked)="childEventClicked($event)"></app-my-products>
+
+<!-- Data from parent to child -->
+<app-edit-product [editItem]="clickedItem"></app-edit-product>
+<!-- <router-outlet></router-outlet> -->
