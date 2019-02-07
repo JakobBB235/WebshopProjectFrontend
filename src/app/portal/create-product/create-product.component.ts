@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Item } from 'src/app/entities/item';
-import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/entities/user';
+import { ItemDataService } from 'src/app/services/item-data.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-create-product',
@@ -15,7 +16,7 @@ export class CreateProductComponent implements OnInit {
   registerProductForm;
   user: User;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { }
+  constructor(private fb: FormBuilder, private userService: UserDataService, private itemService: ItemDataService, private router: Router) { }
 
   ngOnInit() {
     this.registerProductForm = this.fb.group(
@@ -44,8 +45,11 @@ export class CreateProductComponent implements OnInit {
   
   createNewProduct(registerProductForm){
     let item = registerProductForm.value as Item;
-    item.user = this.user;
-    this.apiService.addItem(item).subscribe(response => {  
+    this.userService.currentUser.subscribe(user => item.user = user);
+    // item.user = this.user;
+    console.log(item);
+
+    this.itemService.addItem(item).subscribe(response => {  
       console.log(response);
       //If all goes well.
     }, error => {

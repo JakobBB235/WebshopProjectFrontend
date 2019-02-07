@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../entities/item';
-import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,23 +9,23 @@ import { ApiService } from '../services/api.service';
 export class HomeComponent implements OnInit {
 
   items: Item[];
-  constructor(private apiService: ApiService){}
+  constructor(){}
 
   ngOnInit(){
-    this.getItems();
+    // this.getItems();
   }
 
-  getItems(){
-    this.apiService.getAllItems().subscribe((response: Item[]) => {  
-      console.log(response);
-      //If all goes well.
-      this.items = response;
-    }, error => {
-      console.log("Error!", error);
+  // getItems(){
+  //   this.apiService.getAllItems().subscribe((response: Item[]) => {  
+  //     console.log(response);
+  //     //If all goes well.
+  //     this.items = response;
+  //   }, error => {
+  //     console.log("Error!", error);
 
-      //If web service fails.
+  //     //If web service fails.
       
-    }); 
-  }
+  //   }); 
+  // }
 
 }

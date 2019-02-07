@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/entities/user';
-import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerUserForm;
 
-  constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService) { }
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserDataService) { }
 
   ngOnInit() {
     this.registerUserForm = this.fb.group(
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   
   createNewUser(registerUserForm){
     let user = registerUserForm.value as User;
-    this.apiService.addUser(user).subscribe(response => {  
+    this.userService.addUser(user).subscribe(response => {  
       console.log(response);
       //If all goes well.
     }, error => {

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/entities/item';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ItemDataService } from 'src/app/services/item-data.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -14,10 +14,11 @@ export class EditProductComponent implements OnInit, OnChanges {
   editProductForm;
   @Input() editItem: Item; //Data from parent to child
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { }
+  constructor(private fb: FormBuilder, private itemService: ItemDataService, private router: Router) { }
 
   /*
-  TODO: Make the existing data appear in all input fields.
+  TODO: Make the existing data appear in all input fields. 
+  Get the item object from path parameter instead! Because my products will eventually use pagination(not load all available objects at the same time.)
   */
   ngOnInit() {
     this.editProductForm = this.fb.group(
@@ -53,7 +54,7 @@ export class EditProductComponent implements OnInit, OnChanges {
 
   editExistingProduct(editProductForm){
     let item = editProductForm.value as Item;
-    this.apiService.addItem(item).subscribe(response => {  
+    this.itemService.addItem(item).subscribe(response => {  
       console.log(response);
       //If all goes well.
     }, error => {
