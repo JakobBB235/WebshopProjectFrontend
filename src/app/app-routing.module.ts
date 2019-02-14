@@ -10,6 +10,7 @@ import { PortalComponent } from './portal/portal.component';
 import { CreateProductComponent } from './portal/create-product/create-product.component';
 import { EditProductComponent } from './portal/edit-product/edit-product.component';
 import { MyProductsComponent } from './portal/my-products/my-products.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -24,7 +25,7 @@ const routes: Routes = [
     {path: ':item-id', component: ViewProductComponent}
   ]},
 
-  {path: 'portal', component: PortalComponent, children: [
+  {path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children: [
     {path: 'register', component: CreateProductComponent},
     {path: 'edit', component: EditProductComponent},
     {path: 'myproducts', component: MyProductsComponent}

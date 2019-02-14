@@ -21,6 +21,13 @@ export class EditProductComponent implements OnInit, OnChanges {
   Get the item object from path parameter instead! Because my products will eventually use pagination(not load all available objects at the same time.)
   */
   ngOnInit() {
+    this.itemService.getItem(0).subscribe(reponse => { //Get id from path and set into getItem param
+      console.log(reponse);
+      this.editItem = reponse as Item;
+    }, error => {
+      console.log(error);
+    }); 
+
     this.editProductForm = this.fb.group(
       {
         name: ['', [Validators.required, Validators.maxLength(100)]],

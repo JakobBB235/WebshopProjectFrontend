@@ -1,5 +1,6 @@
 import { Item } from "./item";
 
+// This user matches the DTO from the backend
 export class User {
     userId: number;
     username: string;
@@ -9,4 +10,5 @@ export class User {
     enabled: boolean;
     
     items: Item[];
+
 }

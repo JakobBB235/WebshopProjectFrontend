@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Item } from 'src/app/entities/item';
 import { User } from 'src/app/entities/user';
 import { ItemDataService } from 'src/app/services/item-data.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-my-products',
@@ -20,13 +21,18 @@ export class MyProductsComponent implements OnInit {
 
   user: User;
 
-  constructor(private itemService: ItemDataService, private router: Router) { }
+  constructor(private itemService: ItemDataService, private router: Router, private userService: UserDataService) { }
 
   ngOnInit() {
     this.itemService.getAllItems().subscribe((response: Item[]) => {  
       console.log(response);
       //If all goes well.
-      this.items = response;
+      // this.items = response;
+      this.userService.currentUser.subscribe(reponse => {
+        this.user = reponse;
+      });
+      this.items = response.filter(item => item.userId === this.user.userId);
+      console.log(this.items);
     }, error => {
       console.log("Error!", error);
 

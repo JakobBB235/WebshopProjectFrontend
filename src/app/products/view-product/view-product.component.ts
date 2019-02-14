@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import { Item } from 'src/app/entities/item';
-import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
+import { ItemDataService } from 'src/app/services/item-data.service';
 
 @Component({
   selector: 'app-view-product',
@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 })
 export class ViewProductComponent implements OnInit, OnChanges {
 
-  @Input() viewItem: Item;
+  // @Input() viewItem: Item;
+  viewItem: Item;
+
   // @Output() productViewClicked: EventEmitter<any> = new EventEmitter;
   // viewItem: Item;
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private itemService: ItemDataService, private router: Router) { }
 
   ngOnInit() {
     console.log("Heh");
@@ -23,7 +25,7 @@ export class ViewProductComponent implements OnInit, OnChanges {
     console.log(currentPathSplit);
     console.log(currentId);
     
-    this.apiService.getItem(currentId).subscribe((response: Item) => {  
+    this.itemService.getItem(currentId).subscribe((response: Item) => {  
       console.log(response);
       //If all goes well.
       this.viewItem = response;

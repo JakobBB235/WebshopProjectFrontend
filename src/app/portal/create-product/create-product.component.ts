@@ -45,7 +45,8 @@ export class CreateProductComponent implements OnInit {
   
   createNewProduct(registerProductForm){
     let item = registerProductForm.value as Item;
-    this.userService.currentUser.subscribe(user => item.user = user);
+    // this.userService.currentUser.subscribe(user => item.user = user);
+    this.userService.currentUser.subscribe(user => item.userId = user.userId);
     // item.user = this.user;
     console.log(item);
 

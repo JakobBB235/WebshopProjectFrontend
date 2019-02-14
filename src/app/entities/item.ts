@@ -1,5 +1,6 @@
 import { User } from "./user";
 
+// This item matches the DTO from the backend
 export class Item {
     itemId: number;
     name: string;
@@ -14,5 +15,6 @@ export class Item {
     dateTimeEdited: Date;
     expirationDate: Date;
 
-    user: User;
+    // user: User;
+    userId: number;
 }
