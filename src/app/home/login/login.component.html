@@ -1,21 +1,19 @@
-<div class="formStyle">
-  <h1>Login</h1>
+<h1>Login</h1>
 
-  <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
-    <mat-form-field class="example-full-width">
-        <input matInput type="text" placeholder="Username" formControlName="username">
-    </mat-form-field><br>
-    <div *ngIf='loginForm.controls.username.touched && loginForm.controls.username.errors?.required'> 
-        Username must be filled out
-    </div>
+<form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+  <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Username" formControlName="username">
+  </mat-form-field><br>
+  <div *ngIf='loginForm.controls.username.touched && loginForm.controls.username.errors?.required'> 
+      Username must be filled out
+  </div>
 
-    <mat-form-field class="example-full-width">
-        <input matInput type="password" placeholder="Password" formControlName="password">
-    </mat-form-field><br>
-    <div *ngIf='loginForm.controls.password.touched && loginForm.controls.password.errors?.required'> 
-        Password must be filled out
-    </div>
+  <mat-form-field class="example-full-width">
+      <input matInput type="password" placeholder="Password" formControlName="password">
+  </mat-form-field><br>
+  <div *ngIf='loginForm.controls.password.touched && loginForm.controls.password.errors?.required'> 
+      Password must be filled out
+  </div>
 
-    <button mat-flat-button type="submit" color="primary">Login</button>
-  </form>
-</div>
+  <button mat-flat-button type="submit" color="primary">Login</button>
+</form>

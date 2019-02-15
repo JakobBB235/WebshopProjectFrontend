@@ -19,21 +19,25 @@ export class ViewProductComponent implements OnInit, OnChanges {
   constructor(private itemService: ItemDataService, private router: Router) { }
 
   ngOnInit() {
-    console.log("Heh");
     var currentPathSplit = this.router.url.split("/");
     var currentId = currentPathSplit[currentPathSplit.length-1];
     console.log(currentPathSplit);
     console.log(currentId);
-    
-    this.itemService.getItem(currentId).subscribe((response: Item) => {  
-      console.log(response);
-      //If all goes well.
-      this.viewItem = response;
-    }, error => {
-      console.log("Error!", error);
 
-      //If web service fails.
-      
+    this.itemService.currentItem.subscribe(response =>{
+      //If statement is to not send a request for the item if the item has been clicked on in parent component
+      if (response.itemId === Number(currentId))
+        this.viewItem = response;
+      else
+        this.itemService.getItem(currentId).subscribe((response: Item) => {  
+          console.log(response);
+          //If all goes well.
+          this.viewItem = response;
+        }, error => {
+          console.log("Error!", error);
+    
+          //If web service fails.
+        });
     });
   }
 

@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
     Get data from this parent component to child component view-product on click.
     If 
      */
+    this.itemService.changeItem(item);
     this.router.navigate(['/products/' + item.itemId]);
   }
 }

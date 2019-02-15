@@ -1,0 +1,25 @@
+
+<div class="navigation">
+  <div class="move-right">
+    <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>  -->
+    <div>
+      <button mat-stroked-button routerLink="home" color="primary">Home</button>
+      <button mat-stroked-button routerLink="products" color="primary">Products</button>
+    </div>
+
+    <div *ngIf="!loggedIn">
+      <button mat-stroked-button routerLink="home/register" color="primary">Register</button>
+      <button mat-stroked-button routerLink="home/login" color="primary">Login</button>
+    </div>
+    <div *ngIf="loggedIn">
+        <button mat-stroked-button routerLink="portal" color="primary">Portal</button>
+        <div class="welcome-message">
+          <p>Logged in with {{loggedInUser.role | lowercase}}: {{loggedInUser.username}}</p>
+        </div>
+    </div>
+  </div>
+</div>

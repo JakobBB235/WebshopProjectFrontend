@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './navbar/navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { ProductsComponent } from './products/products.component';
@@ -25,12 +24,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { ManageAccountComponent } from './portal/manage-account/manage-account.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent,
     ProductsComponent,
     PortalComponent,
     CreateProductComponent,
@@ -40,7 +42,9 @@ import { ManageAccountComponent } from './portal/manage-account/manage-account.c
     RegisterComponent,
     PageNotFoundComponent,
     ViewProductComponent,
-    ManageAccountComponent
+    ManageAccountComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import { ManageAccountComponent } from './portal/manage-account/manage-account.c
     MatNativeDateModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
