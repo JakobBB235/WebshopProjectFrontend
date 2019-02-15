@@ -28,6 +28,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
+import { CreateEditProductComponent } from './portal/create-edit-product/create-edit-product.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CommonModule } from '@angular/common';
     ViewProductComponent,
     ManageAccountComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CreateEditProductComponent
   ],
   imports: [
     BrowserModule,

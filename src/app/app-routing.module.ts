@@ -11,6 +11,7 @@ import { CreateProductComponent } from './portal/create-product/create-product.c
 import { EditProductComponent } from './portal/edit-product/edit-product.component';
 import { MyProductsComponent } from './portal/my-products/my-products.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CreateEditProductComponent } from './portal/create-edit-product/create-edit-product.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,7 +29,9 @@ const routes: Routes = [
   {path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children: [
     {path: 'register', component: CreateProductComponent},
     {path: 'edit', component: EditProductComponent},
-    {path: 'myproducts', component: MyProductsComponent}
+    {path: 'myproducts', component: MyProductsComponent},
+    {path: 'product', component: CreateEditProductComponent},
+    {path: 'product/:item-id', component: CreateEditProductComponent}
   ]},
 
   // Always put this last to avoid errors

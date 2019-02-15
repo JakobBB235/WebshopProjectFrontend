@@ -1,0 +1,54 @@
+
+<div class="formStyle">
+  <h1 *ngIf="isCreatingItem">Register Product</h1>
+  <h1 *ngIf="!isCreatingItem">Edit Product</h1>
+
+  <form novalidate [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
+    <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Product name" formControlName="name">
+    </mat-form-field><br>
+    <div *ngIf='productForm.controls.name.touched && productForm.controls.name.errors?.required'> 
+        Product name must be filled out
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput type="number" placeholder="Amount in stock" formControlName="inStock">
+    </mat-form-field><br>
+    <div *ngIf='productForm.controls.inStock.touched && productForm.controls.inStock.errors?.required'> 
+        Amount in stock must be filled out
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput type="number" placeholder="Price" formControlName="priceForOneItem">
+    </mat-form-field><br>
+    <div *ngIf='productForm.controls.priceForOneItem.touched && productForm.controls.priceForOneItem.errors?.required'> 
+        Price must be filled out
+    </div>
+
+    <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Expiration date" formControlName="expirationDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><br>
+    <!-- <div *ngIf='productForm.controls.expirationDate.touched && productForm.controls.expirationDate.errors?.required'> 
+          Expiration Date must be filled out
+    </div> -->
+
+    <mat-form-field class="example-full-width">
+        <!-- <textarea matInput type="text" placeholder="Description" formControlName="description"> -->
+            <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            
+            placeholder="Description"
+            formControlName="description"></textarea>
+            <!-- cdkAutosizeMaxRows="5" -->
+    </mat-form-field><br>
+    <div *ngIf='productForm.controls.description.touched && productForm.controls.description.errors?.required'> 
+        Description must be filled out
+    </div>
+
+    <button mat-flat-button type="submit" color="primary">Register</button>
+  </form>
+</div>

@@ -55,7 +55,15 @@ export class MyProductsComponent implements OnInit {
   }
 
   onItemEditClicked(item: Item){
-    console.log("TEST");
-    this.itemEditClicked.emit(item); //this.item
+    // console.log("TEST");
+    // this.itemEditClicked.emit(item); //this.item
+
+    this.itemService.changeItem(item);
+    this.router.navigate(['portal/product/' + item.itemId])
+  }
+
+  onItemViewClicked(item: Item){
+    this.itemService.changeItem(item);
+    this.router.navigate(['products/' + item.itemId])
   }
 }
