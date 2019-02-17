@@ -40,6 +40,7 @@ export class ItemDataService {
   }
 
   updateItem(item: Item){ 
+    console.log("Update method called")
     return this.http.put(environment.apiUrl + "/item/" + item.itemId, item); 
   }
 }

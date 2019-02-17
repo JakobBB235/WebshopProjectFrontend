@@ -26,7 +26,7 @@ export class CreateEditProductComponent implements OnInit {
 
     this.itemService.currentItem.subscribe(response => {
       //Option 1: If currentId is a number (example:"portal/product/222") and matches the item. (gone to path by clicking on edit in parent component)
-      if (response.itemId === Number(currentId)) { 
+      if (response && response.itemId === Number(currentId)) { 
         this.viewItem = response;
         this.isCreatingItem = false;
       }
@@ -83,30 +83,45 @@ export class CreateEditProductComponent implements OnInit {
         this.productForm.setValue(this.viewItem)
   }
 
-  onSubmit(registerProductForm){
-    if (registerProductForm.valid){
-      // alert("valid"); 
-      this.createNewProduct(registerProductForm);
+  onSubmit(productForm){
+    if (productForm.valid){
+      console.log("isCreatingItem" + this.isCreatingItem);
+      if(this.isCreatingItem)
+        this.createNewProduct(productForm);
+      else if (!this.isCreatingItem) //This does not work even though boolean is false
+        this.updateExistingProduct(productForm);
     } else
-      alert("invalid");
-    console.log(registerProductForm)
+      alert("Form is invalid!");
+    console.log(productForm)
   }
   
-  createNewProduct(registerProductForm){
-    let item = registerProductForm.value as Item;
-    // this.userService.currentUser.subscribe(user => item.user = user);
+  createNewProduct(productForm){
+    let item = productForm.value as Item;
     this.userService.currentUser.subscribe(user => item.userId = user.userId);
-    // item.user = this.user;
     console.log(item);
 
-    this.itemService.addItem(item).subscribe(response => {  
+    this.itemService.addItem(item).subscribe((response: Item) => {  
       console.log(response);
+      this.router.navigate(['/products/' + response.itemId]); //Navigate or stay?
       //If all goes well.
     }, error => {
       console.log("Error!", error);
       //If web service fails.
     }); 
+  }
 
-    this.router.navigate(['/home/products/']); //Navigate
+  updateExistingProduct(productForm){
+    let item = productForm.value as Item;
+    this.userService.currentUser.subscribe(user => item.userId = user.userId);
+    console.log(item);
+
+    this.itemService.updateItem(item).subscribe((response: Item) => {  
+      console.log(response);
+      this.router.navigate(['/products/' + item.itemId]); //Navigate or stay?
+      //If all goes well.
+    }, error => {
+      console.log("Error!", error);
+      //If web service fails.
+    }); 
   }
 }

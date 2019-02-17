@@ -26,7 +26,7 @@ export class ViewProductComponent implements OnInit, OnChanges {
 
     this.itemService.currentItem.subscribe(response => {
       //If statement is to not send a request for the item if the item has been clicked on in parent component
-      if (response.itemId === Number(currentId))
+      if (response && response.itemId === Number(currentId))
         this.viewItem = response;
       else {
         this.itemService.getItem(currentId).subscribe((response: Item) => {  
